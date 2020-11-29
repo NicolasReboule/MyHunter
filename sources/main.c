@@ -12,7 +12,7 @@
 
 void print_usage()
 {
-    my_printf("\n%s\n", "My hunter is a Duck Hunt game like");
+    my_printf("\n%s\n", "My hunter is a Duck Hunt like game");
     my_printf("%s", "The goal is to shoot flying ducks");
     my_printf("%s\n", " by clicking on them with the mouse");
     my_printf("%s", "Try to shoot them as much as possible");
