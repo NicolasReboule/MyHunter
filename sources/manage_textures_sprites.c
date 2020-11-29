@@ -7,20 +7,18 @@
 
 #include <SFML/Graphics.h>
 #include <stdlib.h>
-#include "my.h"
 #include "struct.h"
+#include "my.h"
 
-my_t_s *define_my_textures(my_t_s *my_t)
+my_t_t *define_my_textures(my_t_t *my_t)
 {
-    my_t->my_d.path = "ressources/duck.png";
-    my_t->my_b.path = "ressources/background.jpg";
-    my_t->over.path = "ressources/gameover.png";
-    my_t->my_d.texture = create_my_texture();
-    my_t->my_b.texture = create_my_texture();
-    my_t->over.texture = create_my_texture();
-    my_t->my_b.sprite = create_my_sprite(my_t->my_b.texture, my_t->my_b.path);
-    my_t->my_d.sprite = create_my_sprite(my_t->my_d.texture, my_t->my_d.path);
-    my_t->over.sprite = create_my_sprite(my_t->over.texture, my_t->over.path);
+    set_path(my_t);
+    set_textures(my_t);
+    set_sprites(my_t);
+    setFont(my_t);
+    setText(my_t);
+    set_positions(my_t);
+    set_scale(my_t);
     return (my_t);
 }
 
@@ -49,9 +47,9 @@ sfSprite *create_my_sprite(sfTexture *texture, char *filepath)
     return (sprite);
 }
 
-void draw_sprites(my_t_s *my_t, sfRenderWindow *window)
+void draw_sprites(my_t_t *my_t, sfRenderWindow *window)
 {
-    is_duck_on_screen(my_t, window);
+    is_duck_on_screen(my_t);
     sfSprite_setTextureRect(my_t->my_d.sprite, my_t->my_d.rect);
     sfRenderWindow_drawSprite(window, my_t->my_b.sprite, NULL);
     if (!stop_or_not(0))

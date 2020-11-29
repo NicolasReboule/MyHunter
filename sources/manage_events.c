@@ -16,22 +16,24 @@ void close_window(sfRenderWindow *window)
     sfRenderWindow_close(window);
 }
 
-void mouse_clicks(sfVector2i mouse_pos, my_t_s *my_t, sfRenderWindow *window)
+void mouse_clicks(sfVector2i mouse_pos, my_t_t *my_t)
 {
-    is_mouse_on_duck(mouse_pos, my_t, window);
+    is_mouse_on_duck(mouse_pos, my_t);
+    is_mouse_on_play(mouse_pos, my_t);
 }
 
 
-void analyse_events(sfRenderWindow *window, sfEvent event, my_t_s *my_t)
+void analyse_events(sfRenderWindow *window, sfEvent e, my_t_t *my_t)
 {
     sfVector2i mouse_pos;
-    while (sfRenderWindow_pollEvent(window, &event)) {
+    while (sfRenderWindow_pollEvent(window, &e)) {
         mouse_pos = sfMouse_getPositionRenderWindow(window);
-        if (event.type == sfEvtMouseButtonPressed) {
-            mouse_clicks(mouse_pos, my_t, window);
-            my_printf("x =%d, y =%d\n", mouse_pos.x, mouse_pos.y);
+        if (e.type == sfEvtMouseButtonPressed) {
+            sfSprite_setTextureRect(my_t->my_c.sprite, my_t->my_c.rect);
+            sfRenderWindow_drawSprite(window, my_t->my_c.sprite, NULL);
+            mouse_clicks(mouse_pos, my_t);
         }
-        if (event.type == sfEvtClosed) {
+        if (e.type == sfEvtClosed) {
             close_window(window);
         }
     }

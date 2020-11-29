@@ -28,14 +28,3 @@ sfRenderWindow *create_my_window()
     sfRenderWindow_setFramerateLimit(window, 30);
     return (window);
 }
-
-void destroy_them_all(sfRenderWindow *window, my_t_s *my_t)
-{
-    sfSprite_destroy(my_t->my_b.sprite);
-    sfSprite_destroy(my_t->my_d.sprite);
-    sfSprite_destroy(my_t->over.sprite);
-    sfTexture_destroy(my_t->my_b.texture);
-    sfTexture_destroy(my_t->my_d.texture);
-    sfTexture_destroy(my_t->over.texture);
-    sfRenderWindow_destroy(window);
-}

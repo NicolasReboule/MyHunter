@@ -11,9 +11,9 @@ sfIntRect define_rect(sfIntRect rect)
     return (rect);
 }
 
-void move_rect(sfIntRect *rect, int offset, int max_value)
+void move_rect(sfIntRect *rect, int offset, int max_value, int min_value)
 {
     rect->left = rect->left + offset;
     if (rect->left >= max_value)
-        rect->left = 0;
+        rect->left = min_value;
 }
